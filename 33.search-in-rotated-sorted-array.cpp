@@ -10,23 +10,25 @@ using namespace std;
 
 // @lc code=start
 class Solution {
-#define GET_MIDDLE(r,l) (l == (r + l)/2)?(r):((r + l)/2)
 public:
     int search(vector<int>& nums, int target) {
+        if(nums.size() == 0){
+            return -1;
+        }
         int initial_number = nums[0];
-        int r = nums.size(), l = 0 ,middle;
+        int r = nums.size()-1, l = 0 ,middle;
         if(target > initial_number){
             // find right of 0
             while(r!=l){
-                middle = GET_MIDDLE(r,l);
+                middle = l + (r - l) / 2;
                 while(nums[middle] < initial_number){
-                    r = middle;
-                    middle = GET_MIDDLE(r,l);
+                    r = middle - 1;
+                    middle = l + (r - l) / 2;
                 }
                 if(nums[middle] > target){
-                    r = middle;
+                    r = middle - 1;
                 }else if(nums[middle] < target){
-                    l = middle;
+                    l = middle + 1;
                 }else{
                     return middle;
                 }
@@ -34,15 +36,15 @@ public:
         }else if(target < initial_number){
             // find left of end
             while(r!=l){
-                middle = GET_MIDDLE(r,l);
+                middle = l + (r - l) / 2;
                 while(nums[middle] > initial_number){
-                    l = middle;
-                    middle = GET_MIDDLE(r,l);
+                    l = middle + 1;
+                    middle = l + (r - l) / 2;
                 }
                 if(nums[middle] > target){
-                    r = middle;
+                    r = middle - 1;
                 }else if(nums[middle] < target){
-                    l = middle;
+                    l = middle + 1;
                 }else{
                     return middle;
                 }
