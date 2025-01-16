@@ -19,34 +19,44 @@ public:
         int r = nums.size()-1, l = 0 ,middle;
         if(target > initial_number){
             // find right of 0
-            while(r!=l){
+            while(1){
                 middle = l + (r - l) / 2;
                 while(nums[middle] < initial_number){
                     r = middle - 1;
                     middle = l + (r - l) / 2;
                 }
+
+                if(nums[middle] == target){
+                    return middle;
+                }
+                if(r == l){
+                    break;
+                }
+
                 if(nums[middle] > target){
                     r = middle - 1;
                 }else if(nums[middle] < target){
                     l = middle + 1;
-                }else{
-                    return middle;
                 }
             }
         }else if(target < initial_number){
             // find left of end
-            while(r!=l){
+            while(1){
                 middle = l + (r - l) / 2;
                 while(nums[middle] > initial_number){
                     l = middle + 1;
                     middle = l + (r - l) / 2;
                 }
+                if(nums[middle] == target){
+                    return middle;
+                }
+                if(r == l){
+                    break;
+                }
                 if(nums[middle] > target){
                     r = middle - 1;
                 }else if(nums[middle] < target){
                     l = middle + 1;
-                }else{
-                    return middle;
                 }
             }
         }else{
@@ -62,6 +72,6 @@ public:
 int main(){
     Solution object;
     vector<int> nums = {4,5,6,7,0,1,2};
-    auto code = object.search( nums ,3);
+    auto code = object.search( nums ,0);
 
 }
