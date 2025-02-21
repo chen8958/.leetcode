@@ -48,7 +48,8 @@
         "typeinfo": "cpp",
         "list": "cpp",
         "queue": "cpp",
-        "functional": "cpp"
+        "functional": "cpp",
+        "iterator": "cpp"
     },
     "C_Cpp.default.compilerPath": "C:\\Program Files\\LLVM\\bin\\clang++.exe"
 }
